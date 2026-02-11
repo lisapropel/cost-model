@@ -1,0 +1,125 @@
+CostModel_v3.0_Modular.xlsx
+
+📄 CONFIG (Inputs Only - No Calculations)
+   ├─ FX_Rates (date, USD_CAD, USD_EURO)
+   ├─ Project_Parameters (SG, LOM, penetration_rate, availability)
+   ├─ Equipment_Catalog (item, base_cost, currency, unit)
+   └─ Labor_Catalog (role, annual_rate, currency, utilization_factor)
+
+📄 RATES (Calculation Layer - Atomic Functions)
+   ├─ Equipment_Rates (cost per day/month/year, FX-adjusted)
+   ├─ Consumable_Rates (cost per meter, with wear curves)
+   ├─ Labor_Rates (loaded cost per hour, per role)
+   └─ Fuel_Rates (cost per liter, with volatility scenarios)
+
+📄 POLICIES (Business Logic)
+   ├─ Margin_Rules (cost_category → margin_pct)
+   ├─ Risk_Premiums (project_attributes → premium_pct)
+   ├─ Volume_Discounts (quantity_thresholds → discount_pct)
+   └─ Allocation_Rules (fixed_costs → allocation_method)
+
+📄 CALCULATOR (Block-Level Marginal Cost Engine) ⭐
+   ├─ Input: Block characteristics (depth, tonnage, grade)
+   ├─ Logic: Lookup from RATES, apply POLICIES
+   ├─ Output: Cost per tonne/meter, with breakdown
+   └─ THIS IS THE SIMULATION INTERFACE
+
+📄 AGGREGATOR (Project-Level Rollup)
+   ├─ Time-series projection (monthly cashflow for board)
+   ├─ References CALCULATOR for per-block costs
+   ├─ Adds fixed costs, G&A, revenue share
+   └─ THIS REPLACES YOUR CURRENT SUMMARY SHEET
+
+📄 AUDIT_LOG (Version Control)
+   ├─ Change history (who changed what, when)
+   ├─ Assumption snapshots (record of inputs per scenario)
+   └─ Simulation runs (which cost version was used)
+
+📄 LEGACY_REFERENCE (Read-Only Archive)
+   ├─ Full copy of current 16-sheet model
+   └─ For cross-checking during migration only
+
+================================================================================
+IMPLEMENTATION STATUS (TypeScript/React)
+================================================================================
+
+✅ BUILT:
+
+src/
+├── config/
+│   ├── cost-model-schema.ts      # Comprehensive type definitions
+│   └── cost-model-config.ts      # CONFIG layer implementation
+│
+├── engine/
+│   └── CostCalculationEngine.ts  # RATES, POLICIES, CALCULATOR, AGGREGATOR
+│
+├── components/
+│   └── CostModelConfigurator.tsx # Full UI with tabbed interface
+│
+├── styles/
+│   └── configurator.css          # Fintech-grade design system
+│
+├── App.tsx                       # Main application with Dashboard & Reports
+└── index.ts                      # Public API exports
+
+sample-config.json                # Complete example configuration
+
+================================================================================
+ARCHITECTURE SUMMARY
+================================================================================
+
+Layer 0: CONFIG (Pure Inputs)
+   - FX rates with locking for budget periods
+   - Project parameters: SG, LOM, penetration rates, availability
+   - Equipment catalog with specs, lifecycle, vendor info
+   - Labor catalog with burden rates, certifications
+
+Layer 1: RATES (Derived Atomic Functions)
+   - Equipment: $/hour, $/day, $/month, $/year (FX-adjusted)
+   - Labor: Loaded hourly rate, effective rate (adjusted for utilization)
+   - Consumables: $/meter with depth wear curves, rock type factors
+   - Fuel: Base rates with volatility scenarios for sensitivity
+
+Layer 2: POLICIES (Business Logic)
+   - Margin rules by cost category with validity periods
+   - Risk premiums triggered by block attributes (depth, hardness)
+   - Volume discount tiers
+   - Fixed cost allocation methods (tonnage, meters, headcount, revenue)
+
+Layer 3: CALCULATOR (Block-Level Engine)
+   - Input: BlockCharacteristics (depth, tonnage, grade, rock properties)
+   - Process: Apply RATES → Apply POLICIES → Add contingency
+   - Output: BlockCostResult with full breakdown
+
+Layer 4: AGGREGATOR (Project-Level)
+   - Time-series cashflow projection
+   - NPV, IRR, payback period calculations
+   - Sensitivity analysis engine
+   - Board-ready summaries
+
+================================================================================
+KEY FEATURES
+================================================================================
+
+CAPEX Handling:
+- Equipment depreciation (straight-line, per-block allocation)
+- Installation, commissioning costs
+- Infrastructure allocation
+- Working capital requirements
+
+OPEX Handling:
+- Direct labor (operators, technicians)
+- Indirect labor (supervision, safety)
+- Consumables with wear curves
+- Energy (electricity with peak pricing, fuel)
+- Maintenance (preventive, corrective)
+- G&A overhead allocation
+
+Fintech Features:
+- Full audit trail on every change
+- Assumption snapshots for scenario comparison
+- Simulation run history
+- Multi-currency with FX management
+- Role-based field validation
+- Real-time OEE calculations
+- Import/Export JSON configurations

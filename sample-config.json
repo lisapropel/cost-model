@@ -1,0 +1,383 @@
+{
+  "version": "3.0.0",
+  "modelName": "Robotics Surgical Mining Cost Model",
+  "lastModified": "2026-02-11T00:00:00.000Z",
+  "modifiedBy": "cost-admin",
+
+  "fxRates": {
+    "effectiveDate": "2026-02-11",
+    "baseCurrency": "USD",
+    "rates": {
+      "CAD": 1.36,
+      "EUR": 0.92,
+      "AUD": 1.53,
+      "GBP": 0.79
+    },
+    "source": "manual",
+    "lockedUntil": "2026-06-30"
+  },
+
+  "projectParameters": {
+    "projectCode": "RSM-2026-001",
+    "siteName": "Northern Precision Mine",
+    "specificGravity": 2.85,
+    "lifeOfMine": {
+      "years": 12,
+      "startYear": 2026
+    },
+    "penetrationRate": [
+      { "metersPerHour": 3.2, "rockType": "soft" },
+      { "metersPerHour": 1.8, "rockType": "medium" },
+      { "metersPerHour": 0.9, "rockType": "hard" },
+      { "metersPerHour": 0.4, "rockType": "very-hard" }
+    ],
+    "availability": {
+      "planned": 0.92,
+      "mechanical": 0.95,
+      "operational": 0.97
+    },
+    "precisionTolerance": { "mm": 3 },
+    "roboticCycleTime": { "seconds": 38 },
+    "autonomyLevel": "semi-autonomous"
+  },
+
+  "equipmentCatalog": {
+    "items": [
+      {
+        "itemCode": "EQ-0001",
+        "name": "Surgical Mining Robot - Primary",
+        "category": "robot",
+        "baseCost": 2500000,
+        "currency": "USD",
+        "costUnit": "each",
+        "specs": {
+          "powerKW": 150,
+          "weightKG": 8500
+        },
+        "usefulLife": { "years": 8 },
+        "salvageValue": 15,
+        "vendor": "RoboMine Systems",
+        "leadTimeWeeks": 24,
+        "warrantyMonths": 36
+      },
+      {
+        "itemCode": "EQ-0002",
+        "name": "Surgical Mining Robot - Secondary",
+        "category": "robot",
+        "baseCost": 1800000,
+        "currency": "USD",
+        "costUnit": "each",
+        "specs": {
+          "powerKW": 120,
+          "weightKG": 6200
+        },
+        "usefulLife": { "years": 8 },
+        "salvageValue": 15,
+        "vendor": "RoboMine Systems",
+        "leadTimeWeeks": 20,
+        "warrantyMonths": 36
+      },
+      {
+        "itemCode": "EQ-0003",
+        "name": "Autonomous Haul Truck",
+        "category": "hauler",
+        "baseCost": 4200000,
+        "currency": "USD",
+        "costUnit": "each",
+        "specs": {
+          "powerKW": 750,
+          "weightKG": 95000,
+          "capacityUnit": "tonnes",
+          "capacity": 150
+        },
+        "usefulLife": { "years": 10 },
+        "salvageValue": 10,
+        "vendor": "Caterpillar",
+        "leadTimeWeeks": 32,
+        "warrantyMonths": 24
+      },
+      {
+        "itemCode": "EQ-0004",
+        "name": "Underground Drill Rig",
+        "category": "drill",
+        "baseCost": 1200000,
+        "currency": "USD",
+        "costUnit": "each",
+        "specs": {
+          "powerKW": 200,
+          "weightKG": 25000
+        },
+        "usefulLife": { "years": 7 },
+        "salvageValue": 12,
+        "vendor": "Sandvik",
+        "leadTimeWeeks": 16,
+        "warrantyMonths": 24
+      },
+      {
+        "itemCode": "EQ-0005",
+        "name": "LiDAR Sensor Array",
+        "category": "sensor",
+        "baseCost": 185000,
+        "currency": "USD",
+        "costUnit": "set",
+        "specs": {
+          "powerKW": 2.5
+        },
+        "usefulLife": { "years": 5 },
+        "salvageValue": 5,
+        "vendor": "Velodyne",
+        "leadTimeWeeks": 8,
+        "warrantyMonths": 24
+      },
+      {
+        "itemCode": "EQ-0006",
+        "name": "Central Control System",
+        "category": "control",
+        "baseCost": 750000,
+        "currency": "USD",
+        "costUnit": "system",
+        "specs": {
+          "powerKW": 25
+        },
+        "usefulLife": { "years": 10 },
+        "salvageValue": 5,
+        "vendor": "ABB",
+        "leadTimeWeeks": 12,
+        "warrantyMonths": 36
+      },
+      {
+        "itemCode": "EQ-0007",
+        "name": "Support Vehicle - Light",
+        "category": "support",
+        "baseCost": 85000,
+        "currency": "USD",
+        "costUnit": "each",
+        "specs": {
+          "powerKW": 75,
+          "weightKG": 3500
+        },
+        "usefulLife": { "years": 6 },
+        "salvageValue": 20,
+        "vendor": "Toyota",
+        "leadTimeWeeks": 6,
+        "warrantyMonths": 36
+      }
+    ],
+    "lastUpdated": "2026-02-10T00:00:00.000Z",
+    "approvedBy": "J. Smith - VP Operations"
+  },
+
+  "laborCatalog": {
+    "roles": [
+      {
+        "roleCode": "LBR-001",
+        "title": "Robotics Operator",
+        "category": "direct",
+        "annualRate": 85000,
+        "currency": "USD",
+        "rateType": "salary",
+        "utilizationFactor": 0.85,
+        "burdenRate": 1.38,
+        "certifications": ["Robot Operations Cert", "Underground Safety"],
+        "minimumExperience": { "years": 2 }
+      },
+      {
+        "roleCode": "LBR-002",
+        "title": "Maintenance Technician",
+        "category": "direct",
+        "annualRate": 78000,
+        "currency": "USD",
+        "rateType": "salary",
+        "utilizationFactor": 0.80,
+        "burdenRate": 1.38,
+        "certifications": ["Electrical License", "Hydraulics Cert"],
+        "minimumExperience": { "years": 3 }
+      },
+      {
+        "roleCode": "LBR-003",
+        "title": "Control Room Operator",
+        "category": "indirect",
+        "annualRate": 72000,
+        "currency": "USD",
+        "rateType": "salary",
+        "utilizationFactor": 0.90,
+        "burdenRate": 1.35,
+        "certifications": ["Control Systems Cert"],
+        "minimumExperience": { "years": 1 }
+      },
+      {
+        "roleCode": "LBR-004",
+        "title": "Shift Supervisor",
+        "category": "supervision",
+        "annualRate": 110000,
+        "currency": "USD",
+        "rateType": "salary",
+        "utilizationFactor": 0.75,
+        "burdenRate": 1.42,
+        "certifications": ["Mine Supervisor Cert", "First Aid Level 3"],
+        "minimumExperience": { "years": 7 }
+      },
+      {
+        "roleCode": "LBR-005",
+        "title": "Robotics Engineer",
+        "category": "specialist",
+        "annualRate": 135000,
+        "currency": "USD",
+        "rateType": "salary",
+        "utilizationFactor": 0.70,
+        "burdenRate": 1.45,
+        "certifications": ["P.Eng", "Robotics Systems Design"],
+        "minimumExperience": { "years": 5 }
+      },
+      {
+        "roleCode": "LBR-006",
+        "title": "Safety Officer",
+        "category": "indirect",
+        "annualRate": 95000,
+        "currency": "USD",
+        "rateType": "salary",
+        "utilizationFactor": 0.85,
+        "burdenRate": 1.38,
+        "certifications": ["CRSP", "HAZMAT"],
+        "minimumExperience": { "years": 5 }
+      }
+    ],
+    "jurisdiction": "Canada - Ontario",
+    "collectiveAgreement": "USW Local 6500",
+    "lastUpdated": "2026-01-15T00:00:00.000Z"
+  },
+
+  "marginRules": {
+    "rules": [
+      {
+        "costCategory": "labor",
+        "marginPercent": 12,
+        "justification": "Standard labor markup for risk and profit",
+        "approvedBy": "CFO",
+        "validFrom": "2026-01-01"
+      },
+      {
+        "costCategory": "equipment",
+        "marginPercent": 8,
+        "justification": "Lower margin on capital-intensive items",
+        "approvedBy": "CFO",
+        "validFrom": "2026-01-01"
+      },
+      {
+        "costCategory": "consumables",
+        "marginPercent": 15,
+        "justification": "Higher margin to cover supply chain risk",
+        "approvedBy": "CFO",
+        "validFrom": "2026-01-01"
+      },
+      {
+        "costCategory": "services",
+        "marginPercent": 10,
+        "justification": "Standard services markup",
+        "approvedBy": "CFO",
+        "validFrom": "2026-01-01"
+      }
+    ]
+  },
+
+  "riskPremiums": {
+    "premiums": [
+      {
+        "attribute": "depth",
+        "condition": "> 500",
+        "premiumPercent": 5,
+        "rationale": "Increased complexity and ventilation costs at depth"
+      },
+      {
+        "attribute": "depth",
+        "condition": "> 1000",
+        "premiumPercent": 12,
+        "rationale": "Significant depth challenges, heat management required"
+      },
+      {
+        "attribute": "rock_hardness",
+        "condition": "> 7",
+        "premiumPercent": 8,
+        "rationale": "Increased tool wear and slower penetration"
+      },
+      {
+        "attribute": "abrasivity",
+        "condition": "> 0.5",
+        "premiumPercent": 6,
+        "rationale": "Higher consumables consumption"
+      },
+      {
+        "attribute": "location",
+        "condition": "= remote",
+        "premiumPercent": 10,
+        "rationale": "Additional logistics and labor costs for remote sites"
+      }
+    ]
+  },
+
+  "volumeDiscounts": {
+    "tiers": [
+      {
+        "category": "equipment",
+        "minQuantity": 3,
+        "maxQuantity": 5,
+        "discountPercent": 5
+      },
+      {
+        "category": "equipment",
+        "minQuantity": 6,
+        "maxQuantity": 10,
+        "discountPercent": 10
+      },
+      {
+        "category": "consumables",
+        "minQuantity": 1000,
+        "maxQuantity": 5000,
+        "discountPercent": 3
+      },
+      {
+        "category": "consumables",
+        "minQuantity": 5001,
+        "maxQuantity": 20000,
+        "discountPercent": 7
+      }
+    ]
+  },
+
+  "allocationRules": {
+    "fixedCostAllocations": [
+      {
+        "costType": "G&A",
+        "allocationMethod": "tonnage",
+        "allocationBasis": "General & Administrative costs allocated per tonne produced"
+      },
+      {
+        "costType": "Insurance",
+        "allocationMethod": "revenue",
+        "allocationBasis": "Insurance costs as percentage of gross revenue"
+      },
+      {
+        "costType": "Camp & Accommodation",
+        "allocationMethod": "headcount",
+        "allocationBasis": "Camp costs allocated per worker"
+      },
+      {
+        "costType": "Infrastructure Maintenance",
+        "allocationMethod": "meters",
+        "allocationBasis": "Infrastructure costs per meter of development"
+      }
+    ]
+  },
+
+  "calculatorSettings": {
+    "contingencyPercent": 10,
+    "roundingPrecision": 2,
+    "projectCurrency": "USD"
+  },
+
+  "aggregatorSettings": {
+    "fiscalYearStartMonth": 1,
+    "discountRate": 0.08,
+    "taxRate": 0.26
+  }
+}
