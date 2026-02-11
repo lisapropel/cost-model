@@ -142,7 +142,7 @@ export const CostModelConfigurator: React.FC<CostModelConfiguratorProps> = ({
         const newAuditEntry: AuditLogEntry = {
           id: `audit-${Date.now()}`,
           timestamp: new Date().toISOString(),
-          layer: prev.activeTab,
+          layer: prev.activeTab as 'config' | 'rates' | 'policies' | 'calculator' | 'aggregator',
           entity: key,
           field: fieldPath,
           oldValue,
